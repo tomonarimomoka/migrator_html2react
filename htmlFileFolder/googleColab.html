@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <title>Google Colabで処理を永続化する方法🕓</title>
+  <link rel="icon" href="../素材/favicon.ico">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LG6VXEVGW8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-LG6VXEVGW8');
+  </script>
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2761899560206236" crossorigin="anonymous"></script>
+  
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <!-- ヘッダー高さ分の余白   -->
+  <div class="header-box"></div>
+  <header>
+    <nav class="pc-menu">
+      <ul class="header-ul">
+        <li class="header-li"><a href="/index.html" class="header-a">HOME</a></li>
+        <li class="header-li"><a href="/list-tech.html" class="header-a">ARTICLE</a></li>
+        <li class="header-li"><a href="/privacyPolicy.html" class="header-a">PRIVACY</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main class="box">
+    
+    <h1 id="articleTitle">Google Colabで処理を永続化する方法🕓</h1>
+    <div class="right">
+      🕓本記事の最終更新日は
+      <time id="modify"></time>
+      です。
+      <script>
+        /* 更新日の取得 */
+        const last = new Date(document.lastModified);
+        const year = last.getFullYear();
+        const month = last.getMonth() + 1;
+        const date = last.getDate();
+        /* 日付を書き換える */
+        const target = document.getElementById('modify');
+        target.textContent = year + '-' + month + '-' + date;
+      </script>
+    </div>
+    <h2 class="sectionTitleLine">はじめに</h2>
+    
+    <p>
+      ■想定読者<br>
+      LLMのpre-trainingやFine-Tuningなどで長時間Google colabを稼働させ続けたい人
+    </p>
+    <p>
+      ■断り<br>
+      本記事は筆者が成功した実施法法を記載する記事です。読者が本記事を参考にして期待結果を得られなくても責任はとれません。実行する方は自己責任でお願い致します。
+    </p>
+    <P>
+      ■動作確認環境<br>
+      筆者が動作確認した環境は以下です。
+      <table >
+        <tbody>
+          <tr><th>OS</th><td>Windws 11</td></tr>
+          <tr><th>Google Colab</th><td>Colab Pro+</td></tr>
+          <tr><th>LLM</th><td>RoLA</td></tr>
+        </tbody>
+      </table>
+    </P>
+    
+    <h2 class="sectionTitleLine">Google ColabでGPUを利用する</h2>
+    <p>
+      筆者はGoogle ColabでGPUを使ってLLMを学習させていました。
+      すると、Google ColabでGPUを使い切った旨のエラーが！！
+    </p>
+    <p>
+      GPUをもっと使うには<b>課金するしかない</b>ようです。
+    </p>
+    <img src="../素材/Google Colabの使用量.png" class="imgSize_60" alt="Google Colabの使用量">
+   
+    <p>
+      Google Colabでは以下の料金プランがあるようです。
+      <table >
+        <tbody>
+          <tr><th>プラン</th><th>料金（おそらく為替によって変動）</th><th>どのくらいGPUを使えるか</th></tr>
+          <tr><td>無料枠</td><td>￥0</td><td>非公開</td></tr>
+          <tr><td>Colab Pro</td><td>￥1179</td><td>100コンピューティングユニット</td></tr>
+          <tr><td>Colab Pro+</td><td>￥5767</td><td>500コンピューティングユニット</td></tr>
+        </tbody>
+      </table>      
+      
+    </p>
+    <p>
+      筆者は、時間を有効活用するためにColab Pro+に課金しました💴
+      Colab Pro+は、最大で24時間稼働し続けるので寝ている間に計算を回せるのが魅力ですね。
+    </p>
+    <p>
+      ■Google Payのクレカ登録に失敗する方へ<br>
+      JCBカードを使っていませんか？<br>
+      日本で可能な支払方法は、クレジットカード（Visa、MasterCard、American Expressのみ）かデビットカードでのみです。
+      <b>そのためJCBカードは使えません。</b>  
+    </p> 
+
+    <h2 class="sectionTitleLine">Colab Pro+にしたのに、処理が続かない！</h2>   
+    <p>Colab Pro+に課金後、学習を回して仕事から帰ると学習が止まっていました😢なぜでしょうか？？</p>
+    <p>
+      実行のセッションが切れてから90分経過するとランタイムがリセットされてしまうそうです。
+      要は90分ブラウザを触らないと処理が止まってしまうんですね。
+    </p>
+    <p>仕事が忙しい会社員でも長時間LLMに学習させて、賢いLLMを作りたい！がということで実現方法を見つけました！ぜひご活用ください💗</p>
+
+
+    <h2 class="sectionTitleLine">長時間Google colabを稼働させ続ける方法</h2>  
+    <p>
+      <b>①スリープ時間を設定しないように変更する<br></b>
+      デフォルトの設定ではスリープ時間が設定されているはずです。その設定を「なし」変更して、PCへの動作が何もなくても画面がスリープしなくします。
+    </p>
+    <h4>▼スリープ時間の設定</h4>
+    <img src="../素材/スリープ設定.png" class="imgSize_60" alt="スリープ時間の設定" />
+        
+    <p>
+      <b>②PCを閉じてもスリープしない設定にする<br></b>   
+      以下の画面に遷移して、「カバーを閉じた時の動作」を「何もしない」に設定してください。
+    </P>  
+    <p>
+      以下の画面に移動して設定を変更できます。<br>
+      コントロールパネル＞ハードウェアとサウンド＞電源ボタンの動作の変更  
+    </p>
+      <img src="../素材/電源動作_1.png" class="imgSize_60" alt="電源動作_1" />
+      <img src="../素材/電源動作_2.png" class="imgSize_60" alt="電源動作_2" />    
+      <img src="../素材/電源動作_3.png" class="imgSize_60" alt="電源動作_3" />
+    <p>
+      <b>③「おーとくりっかー」というツールをインストールする<br></b>
+    
+    <a href="https://www.vector.co.jp/download/file/winnt/util/fh673974.html" >おーとくりっかー</a>というツールをインストールする。   
+    このツールはその名の通り自動でクリックしてくれるツールで、クリックする位置と時間を設定できます。
+    </P>
+      
+    <p>
+      <b>④PCに電源を接続する<br></b>
+      ずっと処理を続けるために、あなたのPCの充電を切らさないことが大切です。      
+      PCを電源に接続しましょう。できない場合（PCを持ち歩きたい場合など）はPCの充電を満帆にして、PCのバッテリーの減りをできる限り抑えましょう。
+      PCの明るさを最低する、余計なアプリやブラウザは消すなどでバッテリーの減りを抑えることができます。
+    </P>
+    <p>
+      <b>⑤Google Colabでやりたい処理を実行する<br></b>
+      この際、Google Colabの画面をフルスクリーンにしてください。
+    </P>
+    
+    <p>
+      <b>⑥「おーとくりっかー」の設定<br></b>
+    クリックしても問題ない位置でクリックするように設定します。
+    おーとくりっかーの使い方は公式サイトなどを確認してください。    
+    時間間隔を短くして動作確認をしておくと安心です。
+    </P>
+    
+    <p>
+      <b>⑦「おーとくりっかー」実行<br></b>
+      Google Colabの画面がフルスクリーンになっていることを確認したうえで、おーとくりっかーを実行します。
+      なぜフルスクリーンにする必要があるかというと、ブラウザから外れた部分をクリックすることを防止するためです。
+    </P>
+    <p>
+      <b>⑧好きなことして待つ<br></b>
+      PC確認できるならした方がいいですが、仕事に行ったり寝たりしましょう！
+    </P>
+    
+  
+  <h2 class="sectionTitleLine">おわりに</h2>
+    <p>
+      最後までお読みいただき、ありがとうございます。
+    </p>
+    <p>
+      時間を有効活用しつつ開発し、日本のAI業界を盛り上げていきましょう！
+    </p>
+    <h4>参考リンク</h4>
+    Google , <a href="https://colab.research.google.com/signup?utm_source=resource_tab&utm_medium=link&utm_campaign=payg_learn_more">Colab Paid Services Pricing</a><br>
+    Google , <a href="https://research.google.com/colaboratory/faq.html#usage-limits">Colaboratory</a><br>
+    2020 , <a href="https://kenko-keep.com/12hour-90minit/">【簡単】GoogleColabの制限とは？９０分と１２時間ルール</a>
+  
+  </main>
+  </body>
+</html>

@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <title>ハッカソン参加レポート vol.3 ～敗因を考える～</title>
+  <link rel="icon" href="../素材/favicon.ico">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-LG6VXEVGW8');
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LG6VXEVGW8"></script>
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2761899560206236" crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- ヘッダー高さ分の余白   -->
+  <div class="header-box"></div>
+  <header>
+    <nav class="pc-menu">
+      <ul class="header-ul">
+        <li class="header-li"><a href="/index.html" class="header-a">HOME</a></li>
+        <li class="header-li"><a href="/list-tech.html" class="header-a">ARTICLE</a></li>
+        <li class="header-li"><a href="/privacyPolicy.html" class="header-a">PRIVACY</a></li>
+      </ul>
+    </nav>
+  </header>  
+  <main class="box">
+    <h1 id="articleTitle">ハッカソン参加レポート vol.3 ～敗因を考える～</h1>
+    <div class="right">
+      🕓本記事の最終更新日は
+      <time id="modify"></time>
+      です。
+      <script>
+        /* 更新日の取得 */
+        const last = new Date(document.lastModified);
+        const year = last.getFullYear();
+        const month = last.getMonth() + 1;
+        const date = last.getDate();
+        /* 日付を書き換える */
+        const target = document.getElementById('modify');
+        target.textContent = year + '-' + month + '-' + date;
+      </script>
+    </div>
+    
+    <h2 class="sectionTitleLine">筆者のスペック</h2>
+    <ul>      
+      <li>プログラミングはほぼ独学</li>
+      <li>学生時代はプログラマー</li>
+      <li>今はソフトフェアエンジニアとして自社製品の製品開発を担当</li>
+      <li>使える言語はC# , Java , Python , Shell Script , React×TypeScript（勉強中）</li>
+      <li>ハッカソンは3回目</li>
+    </ul>
+
+    <h2 class="sectionTitleLine">参加したイベント</h2>
+    <p>
+      <table >
+        <tbody>
+          <tr><th>イベント名</th><td>生成AI×旅行ハッカソン！AIによる旅行先提案機能を考え構築しよう</td></tr>
+          <tr><th>URL</th><td><a href="https://ava-intel.connpass.com/event/328529/">Compass</a></td></tr></tr>
+          <tr><th>主催</th><td><a href="https://www.ava-intel.com/">AVA Intelligence</a></td></tr></tr>
+          <tr><th>参加対象者</th><td>「2年以上のエンジニアリング経験をお持ちの方」</td></tr>
+        </tbody>
+      </table>
+    </p>
+
+    <h2 class="sectionTitleLine">ハッカソンで優勝したい！</h2>
+    <p>
+      ハッカソンとは、エンジニア・プログラマーが集まって短期間でプログラムを作成し、その成果を競い合うコンテストのようなものです。
+    </p>
+    <p>
+      そう、ハッカソンには勝ち負けがあるのです。
+      私は今回のハッカソンで敗北いたしました...orz
+    </p>
+    <p>
+      本記事では、ハッカソンで優勝するために必要なことを考えていきます。
+    </p>
+    
+    <h2 class="sectionTitleLine">技術</h2>
+    <p>
+      ■技術選定<br>
+      我々はPython × Streamlitで作りました。
+      Python × Streamlitにしたのは最適解だったと思います。
+      Streamlitは簡単なWebアプリケーション作成のために、私が一押ししているフレームワークです。
+    </p>
+    <p>
+      ■ソース管理<br>
+      社用PCをお持ちの方でGitHubを使えない方がいたのはもったいなかったな～と思います。
+      できるだけプライベート用のPCを持参することをお勧めします。
+      ソース管理はほとんどの場合がGitなので、使ったことない人は練習しておきましょう。
+      <a href="/src/gitForBeginner.html" class="btnArticleLinkInText">はじめてのGit↗</a>
+    </p>
+    <p>
+      ■技術力<br>
+      技術力に関しては、正直どのチームあまり変わらなかったと思います。
+      個々には当然差がありますが、チームとしての総合点は変わらないように見えました。つまり、<b>今回の敗因は技術力ではない</b>と思うのです。
+    </p>
+    <h2 class="sectionTitleLine">コミュニケーション</h2>
+    <p>
+      私が今回の反省から導いた結論は、
+      <b>ハッカソンの勝敗はコミュニケーションで決まる</b>ということです。
+    </p>
+    <p>
+      ハッカソンでは色々な人が来るのですが、基本的に初めて会う人と開発を進めます。
+      そのため結局は、コミュニケーションがうまくとれているチームが優勝する（もしくは良いものを作る）のだと気がつきました。
+      実際に、優勝チームはとても仲が良く、コミュニケーションを活発に取っている印象でした。  
+    </p>
+    
+    <p>
+      実は筆者はハッカソンなどで積極的に話をする方です。
+      しかし、ハッカソンがスタートしたときのコミュニケーションをしっかりとろうという意識が、開発中は集中してしまい薄れていきました。
+      そして、結果的にコミュニケーションが疎かになってしまいました。
+      アラームの活用など、コミュニケーションを忘れないための工夫をするべきだったと考えます。
+    </p>
+    <h2 class="sectionTitleLine">直接的な敗因</h2>
+    <p>
+      私達のチームは4人でした。2人づつに分かれて開発を進めました。分かれて作ったものをくっつけるときにうまくいかず、それを解消できないまま終了時間を迎えてしまったことが直接の敗因だと思います。
+    </p>
+    <p>
+      しかし、この問題ももっとコミュニケーションをとっていれば防げたと思うのです。
+    </p>
+    <h2 class="sectionTitleLine">自分だけが変わっても意味がない？</h2>
+    <p>
+      自分だけがコミュニケーションをとろうと意識しても、みんなも同じ気持ちじゃないと意味がないじゃないか！と突っ込みたくなる方もいるかもしれません。
+    </p>
+    <p>
+      ハッカソンは大体１チームあたり3~5人のことが多いです。少人数のチームだから、一人の頑張りがチームの成果に直結します。
+      
+    </p>
+    <h2 class="sectionTitleLine">おわりに</h2>
+    <p>
+      皆さんはハッカソンで優勝したことはありますか？
+    </p>
+    <p>
+      若手エンジニアはリーダー経験がない人も多いと思います。少人数でリーダーシップが発揮しやすいハッカソンでリーダーシップをとる練習をしてみましょう！
+    </p> 
+    <p>
+      ハッカソンの参加レポートは他にもあるので、ぜひご覧ください。
+      <a href="/src/hakkason_1.html" class="btnArticleLinkInText">vol.1↗</a>
+      <a href="/src/hakkason_2.html" class="btnArticleLinkInText">vol.2↗</a>
+    </p> 
+    <p>
+      最後まで読んでくださり、ありがとうございました。
+    </p>
+  </main>
+  <script>hljs.highlightAll();</script>
+  </body>
+</html>
