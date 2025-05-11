@@ -97,7 +97,7 @@ for htmlFile in htmlFileList:
         # 初めに追記
         reactFileText = '''import { FC } from "react";
 import {HeaderNav , SubTitle , ReadBtn ,References , LastUpdate} from '../Parts';
-import './style.css'
+import '../style.css'
 
 export const ''' + componentName +''': FC = () => {
   var ref:string[][] = [[] ,[] ,[] ] 
