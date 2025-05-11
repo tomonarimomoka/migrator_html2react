@@ -58,18 +58,34 @@ for htmlFile in htmlFileList:
 
         # <br>
         reactFileText = reactFileText.replace('<br>','<br/>')
-        # <P>
+        # <P>タグ
         reactFileText = reactFileText.replace('<P>','<p>')
-        # </P>
         reactFileText = reactFileText.replace('</P>','</p>')
         # <ul style="margin: 0.2em;">
         reactFileText = reactFileText.replace('<ul style="margin: 0.2em;">',"<ul style={{margin: '0.2em'}}>")
-        # 
+        # コメントアウト
         reactFileText = reactFileText.replace('<!--','{/* <!--')
         reactFileText = reactFileText.replace('-->','--> */}')
+        # コードブロック内
+        reactFileText = reactFileText.replace('<ブランチ名>','＜ブランチ名＞')
+        reactFileText = reactFileText.replace('<リポジトリのURL>','＜リポジトリのURL＞')
+        reactFileText = reactFileText.replace('<新しい','＜新しい')
+        reactFileText = reactFileText.replace('ブランチ名>','ブランチ名＞')
+        reactFileText = reactFileText.replace('<欲しい','＜欲しい')
+        reactFileText = reactFileText.replace('ブランチの名前>','ブランチの名前＞')
+        
+        # テーブル
+        reactFileText = reactFileText.replace('''<p>
+      <table >''','      <table>')
+        reactFileText = reactFileText.replace('''<p>
+      <table>''','      <table>')
+        reactFileText = reactFileText.replace('''</table>
+    </p>''','      </table>')
+        reactFileText = reactFileText.replace('</tr></tr>','</tr>')
 
         # class
         reactFileText = reactFileText.replace(' class="',' className="')
+
         # 削除するもの
         reactFileText = reactFileText.replace('<body>','')
         reactFileText = reactFileText.replace('''
